@@ -2,6 +2,8 @@
     "rewrites": [
       { "source": "/login", "destination": "/index.html" },
       { "source": "/admin", "destination": "/admin/login.html" },
-      { "source": "/user", "destination": "/user.html" }
+      { "source": "/admindashbord", "destination": "/admin/adminDashboard.html" },
+      { "source": "/generatecode", "destination": "/admin/generateCode.html" }
+
     ]
   }
