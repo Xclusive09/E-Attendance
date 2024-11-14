@@ -1,9 +1,8 @@
 {
-    "rewrites": [
-      { "source": "/login", "destination": "/index.html" },
-      { "source": "/admin", "destination": "/admin/login.html" },
-      { "source": "/admindashbord", "destination": "/admin/adminDashboard.html" },
-      { "source": "/generatecode", "destination": "/admin/generateCode.html" }
-
-    ]
-  }
+  "rewrites": [
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/admin/login.html" },
+    { "source": "/admindashbord", "destination": "/admin/adminDashboard.html" },
+    { "source": "/generatecode", "destination": "/admin/generateCode.html" }
+  ]
+}
