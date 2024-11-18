@@ -5,4 +5,4 @@
     { "source": "/admindashbord", "destination": "/admin/adminDashboard.html" },
     { "source": "/generatecode", "destination": "/admin/generateCode.html" }
   ]
-}
+} 
