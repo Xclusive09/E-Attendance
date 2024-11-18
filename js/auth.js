@@ -7,7 +7,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
-        const response = await fetch('https://your-backend-api/signup', {
+        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +32,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
-        const response = await fetch('https://your-backend-api/login', {
+        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ document.getElementById('forgetPasswordForm').addEventListener('submit', async f
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
-        const response = await fetch('https://your-backend-api/forget-password', {
+        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/forget-password', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
