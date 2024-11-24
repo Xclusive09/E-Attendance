@@ -1,13 +1,10 @@
-
-// Users Functionalities
-
 // Signup functionality
 document.getElementById('signupForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
-        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signup', {
+        const response = await fetch('https://startupqr-g1i708fff-xclusive09s-projects.vercel.app/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -32,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     try {
-        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/login', {
+        const response = await fetch('https://startupqr-g1i708fff-xclusive09s-projects.vercel.app/signin', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,30 +42,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             window.location.href = '/user/userDashboard.html';
         } else {
             alert('Login failed: ' + result.message);
-        }
-    } catch (error) {
-        alert('Error: ' + error.message);
-    }
-});
-
-// Forget password functionality
-document.getElementById('forgetPasswordForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData.entries());
-    try {
-        const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/forget-password', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        const result = await response.json();
-        if (response.ok) {
-            alert('Password reset link sent!');
-        } else {
-            alert('Failed to send reset link: ' + result.message);
         }
     } catch (error) {
         alert('Error: ' + error.message);

@@ -9,33 +9,64 @@
     <title>QR Code Attendance - Sign Up</title>
 </head>
 <body class="">
-
     <img src="/assets/images/Group 1.png" alt="Logo" class="mx-auto d-block mt-5">
-
     <div class="content d-flex justify-content-center">
-        <form action="" method="post" class="login-Form bg-light text-dark p-4 rounded shadow mt-3" style="width: 400px;">
+        <form id="signupForm" class="login-Form bg-light text-dark p-4 rounded shadow mt-3" style="width: 400px;">
             <p class="text-center" style="font-size: 25px; font-family: Poppins;"><b>Create an account</b></p>
-            <input type="text" name="Fullname" placeholder="Fullname" class="form-control mb-3" required>
-            <input type="text" name="Username" placeholder="Username" class="form-control mb-3" required>
-            <input type="number" name="PhoneNumber" placeholder="Phone Number" class="form-control mb-3" required>
-            <select name="options" class="form-select mb-3" required>
+            <input type="text" name="full_name" placeholder="Fullname" class="form-control mb-3" required>
+            <input type="text" name="user_name" placeholder="Username" class="form-control mb-3" required>
+            <input type="number" name="phone_number" placeholder="Phone Number" class="form-control mb-3" required>
+            <select name="role" class="form-select mb-3" required>
                 <option value="" disabled selected>Select Role</option>
                 <option value="staff">Staff</option>
                 <option value="intern">Intern</option>
                 <option value="visitor">Visitor</option>
             </select>
-            <input type="email" name="Email" placeholder="Email" class="form-control mb-3" required>
-            <input type="password" name="Password" placeholder="Password" class="form-control mb-3" required>
-            <input type="password" name="ConfirmPassword" placeholder="Confirm Password" class="form-control mb-3" required>
+            <input type="email" name="email" placeholder="Email" class="form-control mb-3" required>
+            <input type="password" name="password" placeholder="Password" class="form-control mb-3" required>
+            <input type="password" name="confirm_password" placeholder="Confirm Password" class="form-control mb-3" required>
             <div class="form-check">
                 <input type="checkbox" name="agree" class="form-check-input" id="agree" required>
                 <label class="form-check-label" for="agree">I Agree with privacy and policy</label>
             </div>
-            <button type="submit" class="btn btn-success w-100 mb-3" style="font-size: 25px; font-weight: 700;" onclick="location.href='../index.html';">Sign Up</button>
+            <button type="submit" class="btn btn-success w-100 mb-3" style="font-size: 25px; font-weight: 700;">Sign Up</button>
             <p class="text-center">Have an account? <a href="../index.html" id="signup-text">Login</a></p>
         </form>
     </div>
-
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+            if (data.password !== data.confirm_password) {
+                alert('Passwords do not match!');
+                return;
+            }
+            delete data.confirm_password; // Remove confirm_password from the data
+            try {
+                console.log('Sending data:', data); // Log the data being sent
+                const response = await fetch('https://startupqr-g1i708fff-xclusive09s-projects.vercel.app/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                console.log('Response status:', response.status); // Log the response status
+                const result = await response.json();
+                console.log('Response data:', result); // Log the response data
+                if (response.ok) {
+                    alert('Signup successful!');
+                    window.location.href = '../index.html';
+                } else {
+                    alert('Signup failed: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Fetch error:', error); // Log the error
+                alert('Error: ' + error.message);
+            }
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
