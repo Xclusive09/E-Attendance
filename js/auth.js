@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = Object.fromEntries(formData.entries());
             try {
                 console.log('Sending data:', data); // Log the data being sent
-                const response = await fetch('https://startupqr-g1i708fff-xclusive09s-projects.vercel.app/login', {
+                const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/login', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             delete data.confirm_password; // Remove confirm_password from the data
             try {
                 console.log('Sending data:', data); // Log the data being sent
-                const response = await fetch('https://startupqr-g1i708fff-xclusive09s-projects.vercel.app/signup', {
+                const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
