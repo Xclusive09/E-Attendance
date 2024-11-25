@@ -37,12 +37,19 @@ document.addEventListener('DOMContentLoaded', function() {
         signupForm.addEventListener('submit', async function(event) {
             event.preventDefault();
             const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-            if (data.password !== data.confirm_password) {
+
+            const data = {
+                fullName: formData.get('full_name'),
+                userName: formData.get('user_name'),
+                phoneNumber: formData.get('phone_number'),
+                role: formData.get('role'),
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+            if (data.password !== formData.get('confirm_password')) {
                 alert('Passwords do not match!');
                 return;
             }
-            delete data.confirm_password; // Remove confirm_password from the data
             try {
                 console.log('Sending data:', data); // Log the data being sent
                 const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signup', {
@@ -66,5 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Error: ' + error.message);
             }
         });
+    } else {
+        console.error('Signup form not found');
     }
 });
