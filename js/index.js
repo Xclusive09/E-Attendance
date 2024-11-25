@@ -1,15 +1,21 @@
-// Sidebar functionality
-$(document).ready(function () {
-    $('#menuToggle').click(function () {
-        $('#sidebar').toggleClass('show');
-        $('#overlay').toggleClass('show');
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
-    // Close sidebar when clicking on overlay
-    $('#overlay').click(function () {
-        $('#sidebar').removeClass('show');
-        $('#overlay').removeClass('show');
-    });
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        });
+    }
+
+    if (overlay) {
+        overlay.addEventListener('click', function() {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        });
+    }
 });
 
 // QR code functionality
@@ -31,23 +37,4 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error('The browser does not support the getUserMedia API.');
     }
-});
-
-// Sidebar functionality
-document.getElementById('menuToggle').addEventListener('click', function () {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('overlay');
-
-    if (sidebar.style.display === 'block') {
-        sidebar.style.display = 'none';
-        overlay.style.display = 'none';
-    } else {
-        sidebar.style.display = 'block';
-        overlay.style.display = 'block';
-    }
-});
-
-document.getElementById('overlay').addEventListener('click', function () {
-    document.getElementById('sidebar').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
 });
