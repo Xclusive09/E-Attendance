@@ -7,11 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const data = Object.fromEntries(formData.entries());
             try {
                 console.log('Sending data:', data); // Log the data being sent
-                const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/login', {
+                const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signin', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
+                    mode: 'cors',
                     body: JSON.stringify(data)
                 });
                 console.log('Response status:', response.status); // Log the response status
