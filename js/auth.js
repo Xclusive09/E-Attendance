@@ -19,15 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
                 console.log('Response data:', result); // Log the response data
                 if (response.ok) {
-                    alert('Login successful!');
-                    localStorage.setItem('authToken', result.token); // Store the token
-                    window.location.href = '/user/userDashboard.html';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login successful!',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    }).then(() => {
+                        localStorage.setItem('authToken', result.token); // Store the token
+                        window.location.href = '/user/userDashboard.html';
+                    });
                 } else {
-                    alert('Login failed: ' + result.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login failed',
+                        text: result.message,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    });
                 }
             } catch (error) {
                 console.error('Fetch error:', error); // Log the error
-                alert('Error: ' + error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message,
+                    customClass: {
+                        popup: 'custom-popup',
+                        title: 'custom-title',
+                        content: 'custom-content',
+                        confirmButton: 'custom-confirm-button'
+                    }
+                });
             }
         });
     }
@@ -47,7 +79,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 password: formData.get('password')
             };
             if (data.password !== formData.get('confirm_password')) {
-                alert('Passwords do not match!');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Passwords do not match!',
+                    customClass: {
+                        popup: 'custom-popup',
+                        title: 'custom-title',
+                        content: 'custom-content',
+                        confirmButton: 'custom-confirm-button'
+                    }
+                });
                 return;
             }
             try {
@@ -63,14 +105,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
                 console.log('Response data:', result); // Log the response data
                 if (response.ok) {
-                    alert('Signup successful!');
-                    window.location.href = '../index.html';
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Signup successful!',
+                        showConfirmButton: false,
+                        timer: 1500,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    }).then(() => {
+                        window.location.href = '../index.html';
+                    });
                 } else {
-                    alert('Signup failed: ' + result.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Signup failed',
+                        text: result.message,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    });
                 }
             } catch (error) {
                 console.error('Fetch error:', error); // Log the error
-                alert('Error: ' + error.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message,
+                    customClass: {
+                        popup: 'custom-popup',
+                        title: 'custom-title',
+                        content: 'custom-content',
+                        confirmButton: 'custom-confirm-button'
+                    }
+                });
             }
         });
     } else {
