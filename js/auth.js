@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
             try {
+                Notiflix.Loading.circle();
                 console.log('Sending data:', data); // Log the data being sent
                 const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signin', {
                     method: 'POST',
@@ -15,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     mode: 'cors',
                     body: JSON.stringify(data)
                 });
+                Notiflix.Loading.remove();
                 console.log('Response status:', response.status); // Log the response status
                 const result = await response.json();
                 console.log('Response data:', result); // Log the response data
@@ -37,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     Swal.fire({
                         icon: 'error',
-                        title: 'Login failed',
+                        title: 'Invalid Credentials',
                         text: result.message,
                         customClass: {
                             popup: 'custom-popup',
@@ -93,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             try {
+                Notiflix.Loading.circle(); // Show loading indicator
                 console.log('Sending data:', data); // Log the data being sent
                 const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/auth/signup', {
                     method: 'POST',
@@ -101,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     body: JSON.stringify(data)
                 });
+                Notiflix.Loading.remove(); // Remove loading indicator
                 console.log('Response status:', response.status); // Log the response status
                 const result = await response.json();
                 console.log('Response data:', result); // Log the response data
