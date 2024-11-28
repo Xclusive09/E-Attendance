@@ -154,4 +154,61 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Signup form not found');
     }
+
+    const scanButton = document.querySelector('.scan-button');
+    if (scanButton) {
+        scanButton.addEventListener('click', async function() {
+            try {
+                Notiflix.Loading.circle(); // Show loading indicator
+                const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/attendance/mark', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                    }
+                });
+                Notiflix.Loading.remove(); // Remove loading indicator
+                const result = await response.json();
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Scan successful!',
+                        text: result.message,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Scan failed',
+                        text: result.message,
+                        customClass: {
+                            popup: 'custom-popup',
+                            title: 'custom-title',
+                            content: 'custom-content',
+                            confirmButton: 'custom-confirm-button'
+                        }
+                    });
+                }
+            } catch (error) {
+                Notiflix.Loading.remove(); // Remove loading indicator
+                console.error('Fetch error:', error); // Log the error
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message,
+                    customClass: {
+                        popup: 'custom-popup',
+                        title: 'custom-title',
+                        content: 'custom-content',
+                        confirmButton: 'custom-confirm-button'
+                    }
+                });
+            }
+        });
+    }
 });
