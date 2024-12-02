@@ -18,23 +18,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// QR code functionality
-document.addEventListener('DOMContentLoaded', function () {
-    const video = document.getElementById('qr-video');
+  // Function to format date and time
+  function formatDateTime() {
+    const now = new Date();
+    
+    // Get the current month and date
+    const options = { month: 'long', day: 'numeric' };
+    const formattedDate = now.toLocaleDateString('en-US', options);
+    
+    // Get the current time in 12-hour format
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedTime = `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${ampm}`;
 
-    // Check if the browser supports the getUserMedia API
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({
-            video: { facingMode: { ideal: "environment" } } // Use the back camera
-        })
-        .then(function (stream) {
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch(function (error) {
-            console.error('Error accessing the camera:', error);
-        });
-    } else {
-        console.error('The browser does not support the getUserMedia API.');
-    }
-});
+    // Set the date and time in the date card
+    document.querySelector('#date-card h4').innerText = formattedDate.split(' ')[0]; // Month
+    document.querySelector('#date-card h5').innerText = formattedDate.split(' ')[1]; // Day
+    document.querySelector('#time').innerText = formattedTime; // Time
+}
+
+// Call the function to format and display date and time
+formatDateTime();
+
+// QR code functionality

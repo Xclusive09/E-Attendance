@@ -167,3 +167,45 @@ body {
     padding: 10px 20px; /* Padding */
     font-size: 16px; /* Font size */
 }
+/* admin dashboard */
+body {
+    background-color: #f8f9fa;
+}
+.admin-card {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.date-card {
+    background-color: #e6f7e6;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid black;
+    border-color: black;
+    margin-bottom: 20px;
+}
+.date-card h4 {
+    margin: 0;
+    font-size: 2rem;
+}
+.date-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: #6c757d;
+}
+.table {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+th, td {
+    text-align: center;
+}
+tr .headers{
+background: #D9D9D9;
+    ;
+}

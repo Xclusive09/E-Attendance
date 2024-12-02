@@ -13,47 +13,7 @@
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .admin-card {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .date-card {
-            background-color: #e6f7e6;
-            padding: 15px;
-            border-radius: 15px;
-            text-align: center;
-            border: 2px solid black;
-            border-color: black;
-            margin-bottom: 20px;
-        }
-        .date-card h4 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        .date-card p {
-            font-size: 0.9rem;
-            margin: 0;
-            color: #6c757d;
-        }
-        .table {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        th, td {
-            text-align: center;
-        }
-        tr .headers{
-        background: #D9D9D9;
-            ;
-        }
+      
     </style>
 </head>
 <body>
@@ -149,28 +109,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/index.js"></script>
     <script>
-        // Function to format date and time
-        function formatDateTime() {
-            const now = new Date();
-            
-            // Get the current month and date
-            const options = { month: 'long', day: 'numeric' };
-            const formattedDate = now.toLocaleDateString('en-US', options);
-            
-            // Get the current time in 12-hour format
-            const hours = now.getHours();
-            const minutes = now.getMinutes();
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-            const formattedTime = `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${ampm}`;
-    
-            // Set the date and time in the date card
-            document.querySelector('#date-card h4').innerText = formattedDate.split(' ')[0]; // Month
-            document.querySelector('#date-card h5').innerText = formattedDate.split(' ')[1]; // Day
-            document.querySelector('#time').innerText = formattedTime; // Time
-        }
-    
-        // Call the function to format and display date and time
-        formatDateTime();
+      
     </script>
     
 </body>
