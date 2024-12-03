@@ -71,25 +71,14 @@
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
 
-    <div class="admin-card mt-5">
-        <!-- Greeting Section -->
-        <div class="mb-4">
-            <h4>Hello, User</h4>
-        </div>
-
-        <!-- Date Card -->
+    <div class="content d-flex flex-column justify-content-center align-items-center">
         <div class="date-card" id="date-card">
-            <h4></h4>
-            <h5></h5>
+            <h4 id="current-date"></h4>
             <p id="time"></p>
         </div>
-    </div>
-
-
-    <div class="content d-flex flex-column justify-content-center align-items-center">
-        
 
         <button class="checkin-button" onclick="checkIn()">Check In</button>
+        <div id="status"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -119,12 +108,13 @@
             setInterval(formatDateTime, 60000); // Update time every minute
         });
 
-        function checkIn() {
+        async function checkIn() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(async function(position) {
                     const { latitude, longitude } = position.coords;
                     try {
                         Notiflix.Loading.circle(); // Show loading indicator
+                        console.log('Sending data:', { latitude, longitude }); // Log the data being sent
                         const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/attendance/mark', {
                             method: 'POST',
                             headers: {
@@ -134,8 +124,11 @@
                             body: JSON.stringify({ latitude, longitude })
                         });
                         Notiflix.Loading.remove(); // Remove loading indicator
+                        console.log('Response status:', response.status); // Log the response status
                         const result = await response.json();
+                        console.log('Response data:', result); // Log the response data
                         if (response.ok) {
+                            document.getElementById('status').textContent = 'Check-in successful!';
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Check-in successful!',
@@ -148,6 +141,7 @@
                                 }
                             });
                         } else {
+                            document.getElementById('status').textContent = 'Check-in failed!';
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Check-in failed',
@@ -163,6 +157,7 @@
                     } catch (error) {
                         Notiflix.Loading.remove(); // Remove loading indicator
                         console.error('Fetch error:', error); // Log the error
+                        document.getElementById('status').textContent = 'Error during check-in!';
                         Swal.fire({
                             icon: 'error',
                             title: 'Error',
@@ -177,11 +172,11 @@
                     }
                 }, function(error) {
                     console.error('Geolocation error:', error); // Log the error
-                    
+                    document.getElementById('status').textContent = 'Geolocation error: ' + error.message;
                     Swal.fire({
                         icon: 'error',
                         title: 'Geolocation error',
-                        text: error.message,
+                        text: 'Please enable location access in your browser settings and try again.',
                         customClass: {
                             popup: 'custom-popup',
                             title: 'custom-title',
@@ -191,6 +186,7 @@
                     });
                 });
             } else {
+                document.getElementById('status').textContent = 'Geolocation is not supported by this browser.';
                 Swal.fire({
                     icon: 'error',
                     title: 'Geolocation not supported',
