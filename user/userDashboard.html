@@ -160,7 +160,7 @@
                     const distance = getDistance(userCoords, officeCoords);
                     console.log('Distance to office:', distance); // Log the distance
 
-                    if (distance <= 1000.0) { // Check if within 200 meters (0.2 km)
+                    if (distance <= 200.0) { // Check if within 200 meters (0.2 km)
                         try {
                             Notiflix.Loading.circle(); // Show loading indicator
                             console.log('Sending data:', userCoords); // Log the data being sent
