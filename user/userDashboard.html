@@ -175,6 +175,7 @@
                             });
                             Notiflix.Loading.remove(); // Remove loading indicator
                             const result = await response.json();
+                            alert('Backend response:', result);
                             if (response.ok) {
                                 if (result.message === 'You can only check in once every 24 hours') {
                                     Swal.fire({
@@ -202,6 +203,7 @@
                                     });
                                 }
                             } else {
+                                alert('Error response:', result);
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Check-in failed',
