@@ -126,11 +126,12 @@
                     attendanceTableBody.innerHTML = ''; // Clear existing records
 
                     data.records.forEach(record => {
+                        console.log('Record:', record); // Log the record to inspect its structure
                         const row = document.createElement('tr');
                         const usernameCell = document.createElement('td');
                         const timeInCell = document.createElement('td');
 
-                        usernameCell.textContent = record.username;
+                        usernameCell.textContent = record.username || record.user_name || record.name; // Adjust based on the actual property name
                         timeInCell.textContent = new Date(record.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
                         row.appendChild(usernameCell);

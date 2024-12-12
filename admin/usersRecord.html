@@ -192,9 +192,17 @@
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
         const token = localStorage.getItem('authToken');
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('userId');
+
+        if (!userId) {
+            console.error('User ID not found in URL');
+            return;
+        }
+        
 
         try {
-            const response = await fetch('https://e-attendance-backend-wf6x.onrender.com/attendance-records', {
+            const response = await fetch(`https://e-attendance-backend-wf6x.onrender.com/admin/user-attendance/${userId}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -212,7 +220,7 @@
                     const dateCell = document.createElement('td');
                     const timeInCell = document.createElement('td');
 
-                    usernameCell.textContent = record.username;
+                    usernameCell.textContent = record.user_name;
                     dateCell.textContent = new Date(record.timestamp).toLocaleDateString('en-US');
                     timeInCell.textContent = new Date(record.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 

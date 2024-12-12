@@ -206,8 +206,8 @@
                     const row = document.createElement('tr');
                     const fullNameCell = document.createElement('td');
                     const link = document.createElement('a');
-                    link.href = `/admin/userRecord.html?userId=${user.id}`;
-                    link.textContent = user.fullName;
+                    link.href = `/admin/usersRecord.html?userId=${user.id}`;
+                    link.textContent = user.full_name;
                     fullNameCell.appendChild(link);
                     row.appendChild(fullNameCell);
                     usersTableBody.appendChild(row);
