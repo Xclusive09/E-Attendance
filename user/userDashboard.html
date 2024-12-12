@@ -75,7 +75,7 @@
     <div class="admin-card mt-5">
         <!-- Greeting Section -->
         <div class="mb-4">
-            <h4 id="greeting">Hello, User</h4>
+            <h4 id="greeting">Hello, </h4>
         </div>
 
         <!-- Date Card -->
@@ -112,8 +112,8 @@
                 });
 
                 if (response.ok) {
-                    const userData = await response.json();
-                    const userName = userData.userName; // Adjust this based on your API response structure
+                    const userDetails = await response.json();
+                    const userName = userDetails.userName; // Adjust this based on your API response structure
                     document.getElementById('greeting').innerText = `Hello, ${userName}`;
                 } else {
                     console.error('Failed to fetch user data');
