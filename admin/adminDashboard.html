@@ -4,22 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-
-    <!-- Bootstrap CSS -->
-     <link rel="stylesheet" href="/assets/styles/styles.css">
-     <link rel="shortcut icon" href="../assets/images/favicon-32x32.png" type="image/x-icon">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/styles/styles.css">
+    <link rel="shortcut icon" href="../assets/images/favicon-32x32.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-      
+        .checkin-button {
+            background-color: #057A1E;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto 0;
+            text-align: center;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+        .checkin-button:hover {
+            background-color: #045312;
+        }
     </style>
 </head>
 <body>
-
-      <!-- Navigation bar with toggle button -->
-      <nav class="navbar bg-light">
+    <!-- Navigation bar with toggle button -->
+    <nav class="navbar bg-light">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" id="menuToggle">
                 <span class="navbar-toggler-icon"></span>
@@ -32,8 +44,8 @@
         </div>
     </nav>
     
-     <!-- Sidebar Navigation -->
-     <div class="sidebar" id="sidebar">
+    <!-- Sidebar Navigation -->
+    <div class="sidebar" id="sidebar">
         <img src="/assets/images/Group 1.png" alt="Logo" class="mx-auto d-block mt-5">
         <a href="/admin/adminDashboard.html">
             <i class="fas fa-home"></i> Home
@@ -43,29 +55,21 @@
                 <path d="M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223"/>
                 <path d="M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
                 <path d="M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
-                <path d="M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972"/>
-              </svg> Records
+            </svg> Users Record
         </a>
         <a href="/admin/generateCode.html">
             <i class="fas fa-user-edit"></i> Generate Code
         </a>
-       
         <a href="#">
             <i class="fas fa-question-circle"></i> Help
         </a>
-
         <a href="/admin/login.html">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
-              </svg> Logout 
+            <i class="fas fa-sign-out-alt"></i> Logout
         </a>
     </div>
 
-
     <!-- Overlay -->
     <div class="overlay" id="overlay"></div>
-
 
     <div class="admin-card mt-5">
         <!-- Greeting Section -->
@@ -84,33 +88,78 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th  class=" headers" scope="col">Username</th>
-                    <th class=" headers" scope="col">Time In</th>
+                    <th class="headers" scope="col">Username</th>
+                    <th class="headers" scope="col">Time In</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Zainab</td>
-                    <td>10:33 AM</td>
-                </tr>
-                <tr>
-                    <td>Aisha</td>
-                    <td>10:06 AM</td>
-                </tr>
-                
+            <tbody id="attendance-table-body">
+                <!-- Attendance records will be inserted here -->
             </tbody>
         </table>
     </div>
 
-    <!-- Bootstrap JS + Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
     <script src="/js/index.js"></script>
+    <script src="/js/auth.js"></script>
+
     <script>
-      
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Fetch attendance records for today
+            const token = localStorage.getItem('authToken');
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+            try {
+                const response = await fetch(`https://e-attendance-backend-wf6x.onrender.com/admin/attendance-records/${today}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const attendanceTableBody = document.getElementById('attendance-table-body');
+                    attendanceTableBody.innerHTML = ''; // Clear existing records
+
+                    data.records.forEach(record => {
+                        const row = document.createElement('tr');
+                        const usernameCell = document.createElement('td');
+                        const timeInCell = document.createElement('td');
+
+                        usernameCell.textContent = record.username;
+                        timeInCell.textContent = new Date(record.timestamp).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+                        row.appendChild(usernameCell);
+                        row.appendChild(timeInCell);
+                        attendanceTableBody.appendChild(row);
+                    });
+                } else {
+                    console.error('Failed to fetch attendance records');
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+
+            // Display current date and time
+            function formatDateTime() {
+                const now = new Date();
+                const options = { month: 'long', day: 'numeric' };
+                const formattedDate = now.toLocaleDateString('en-US', options);
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                const formattedTime = `${hours % 12 || 12}:${String(minutes).padStart(2, '0')} ${ampm}`;
+                document.querySelector('#date-card h4').innerText = formattedDate.split(' ')[0]; // Month
+                document.querySelector('#date-card h5').innerText = formattedDate.split(' ')[1]; // Day
+                document.querySelector('#time').innerText = formattedTime; // Time
+            }
+            formatDateTime();
+            setInterval(formatDateTime, 60000); // Update time every minute
+        });
     </script>
-    
 </body>
 </html>
