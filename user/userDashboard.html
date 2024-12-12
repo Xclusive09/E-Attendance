@@ -113,8 +113,8 @@
 
                 if (response.ok) {
                     const userData = await response.json();
-                    const username = userData.username; // Adjust this based on your API response structure
-                    document.getElementById('greeting').innerText = `Hello, ${username}`;
+                    const userName = userData.userName; // Adjust this based on your API response structure
+                    document.getElementById('greeting').innerText = `Hello, ${userName}`;
                 } else {
                     console.error('Failed to fetch user data');
                 }
